@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import supabase from '../services/supabaseClient.js';  // Assuming you have a supabaseClient.js file
+import supabase from '../services/supabaseClient.js';  // Assuming you have supabaseClient.js file
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
@@ -10,9 +10,11 @@ const UserList = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
+        // Fetch users data along with their role (joining roles table)
         const { data, error } = await supabase
-          .from('users')  // Referencing the 'users' table from Supabase's auth system
-          .select('*');    // Select all user data
+          .from('users')
+          .select('*, roles(name)')  // Join the roles table to get the role name
+          .order('created_at', { ascending: false });  // Optionally order by creation date
 
         if (error) throw error;
 
@@ -37,10 +39,11 @@ const UserList = () => {
         {users.map((user) => (
           <li key={user.id}>
             <h2>{user.email}</h2>  {/* Display the user's email */}
-            <p><strong>Full Name:</strong> {user.user_metadata.full_name || 'N/A'}</p>
+            <p><strong>Full Name:</strong> {user.full_name || 'N/A'}</p>  {/* Display the full name */}
+            <p><strong>Role:</strong> {user.roles?.name || 'N/A'}</p>  {/* Display the user's role name */}
             <p><strong>Created At:</strong> {user.created_at}</p>
             <p><strong>Last Login:</strong> {user.last_sign_in_at}</p>
-            <p><strong>Status:</strong> {user.disabled ? 'Disabled' : 'Active'}</p> {/* Check if the user is disabled */}
+            <p><strong>Status:</strong> {user.status || 'Active'}</p>  {/* Display user's status */}
           </li>
         ))}
       </ul>
