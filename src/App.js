@@ -7,6 +7,8 @@ import ClassList from './components/ClassList';
 import ClassScheduleList from './components/ClassScheduleList';
 import UserList from './components/UserList';
 import ClassSignUp from './components/ClassSignUp';
+import ClassScheduleListWithStudents from './components/ClassScheduleListWithStudents';
+import EnrollmentList from './components/EnrollmentList';
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -49,9 +51,11 @@ const App = () => {
           />
         </Routes>
       </Router>
+      <ClassScheduleListWithStudents/>
+      <EnrollmentList/>
       <UserList/>
       <ClassList/>
-      <ClassScheduleList/>
+      {/* <ClassScheduleList/> */}
     </Fragment>
   );
 };
