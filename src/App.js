@@ -5,6 +5,7 @@ import UserProfile from './components/UserProfile';
 import supabase from './services/supabaseClient'; // Import supabase client
 import ClassList from './components/ClassList';
 import ClassScheduleList from './components/ClassScheduleList';
+import UserList from './components/UserList';
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -44,6 +45,7 @@ const App = () => {
           />
         </Routes>
       </Router>
+      <UserList/>
       <ClassList/>
       <ClassScheduleList/>
     </Fragment>
