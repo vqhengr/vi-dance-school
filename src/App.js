@@ -9,10 +9,7 @@ import UserList from './components/UserList';
 import ClassSignUp from './components/ClassSignUp';
 import ClassScheduleListWithStudents from './components/ClassScheduleListWithStudents';
 import EnrollmentList from './components/EnrollmentList';
-import AdminEnroll from './components/AdminEnroll';
-import ClassScheduleSelection from './components/ClassScheduleSelection';
-import UserSelection from './components/AdminEnroll';
-
+import AdminEnroll from './components/AdminEnroll'; 
 const App = () => {
   const [user, setUser] = useState(null);
 
